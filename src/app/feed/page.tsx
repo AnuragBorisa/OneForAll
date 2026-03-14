@@ -25,7 +25,8 @@ export default async function FeedPage({
     <main
       style={{
         minHeight: "100vh",
-        padding: "48px 24px 80px"
+        padding: "48px 24px 80px",
+        background: "#020203"
       }}
     >
       <section
