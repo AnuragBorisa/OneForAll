@@ -1,0 +1,13 @@
+<svg width="256" height="256" viewBox="0 0 256 256" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <rect width="256" height="256" rx="64" fill="#020403"/>
+  <circle cx="128" cy="128" r="88" fill="url(#pulse)" fill-opacity="0.12"/>
+  <path d="M64 132C64 94.4446 94.4446 64 132 64H176V96H132C112.118 96 96 112.118 96 132C96 151.882 112.118 168 132 168H148V128H180V200H132C94.4446 200 64 169.555 64 132Z" fill="#DDFEE7"/>
+  <path d="M170 54L202 86" stroke="#6BFFA3" stroke-width="16" stroke-linecap="round"/>
+  <path d="M202 54L170 86" stroke="#6BFFA3" stroke-width="16" stroke-linecap="round"/>
+  <defs>
+    <radialGradient id="pulse" cx="0" cy="0" r="1" gradientUnits="userSpaceOnUse" gradientTransform="translate(164 88) rotate(129.289) scale(150.96)">
+      <stop stop-color="#6BFFA3"/>
+      <stop offset="1" stop-color="#6BFFA3" stop-opacity="0"/>
+    </radialGradient>
+  </defs>
+</svg>
