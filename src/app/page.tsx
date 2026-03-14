@@ -55,7 +55,17 @@ export default async function HomePage() {
               </span>
               <PresetSwitcher activePreset={preset.id} />
               <div style={{ display: "grid", gap: 14 }}>
-                <h1 style={{ margin: 0, fontSize: "clamp(3rem, 8vw, 6.4rem)", lineHeight: 0.9, maxWidth: 820 }}>
+                <h1
+                  style={{
+                    margin: 0,
+                    fontSize:
+                      preset.id === "quantum"
+                        ? "clamp(2.35rem, 6.2vw, 5rem)"
+                        : "clamp(3rem, 8vw, 6.4rem)",
+                    lineHeight: preset.id === "quantum" ? 0.94 : 0.9,
+                    maxWidth: preset.id === "quantum" ? 700 : 820
+                  }}
+                >
                   {preset.homeTitle}
                 </h1>
                 <p style={{ margin: 0, maxWidth: 760, color: "var(--muted)", fontSize: 20, lineHeight: 1.7 }}>
