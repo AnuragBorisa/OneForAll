@@ -1,4 +1,6 @@
+import Link from "next/link";
 import { getSettingsForDisplay, getActivePreset } from "@/server/settings/settings";
+import { isAdminAuthenticated, isAdminProtectionEnabled } from "@/server/auth/admin";
 
 export const dynamic = "force-dynamic";
 
@@ -49,6 +51,47 @@ export default async function SettingsPage({
 }) {
   const resolvedParams = (await searchParams) ?? {};
   const saved = resolvedParams.saved === "1";
+  const authError = resolvedParams.auth === "1";
+  const isProtected = isAdminProtectionEnabled();
+  const isAuthorized = await isAdminAuthenticated();
+
+  if (isProtected && !isAuthorized) {
+    return (
+      <main style={{ minHeight: "100vh", padding: "48px 24px 80px" }}>
+        <section style={{ maxWidth: 560, margin: "0 auto", display: "grid", gap: 20 }}>
+          <div className="page-hero" style={{ display: "grid", gap: 10, padding: 32, borderRadius: 32 }}>
+            <h1 style={{ margin: 0, fontSize: "clamp(2.1rem, 6vw, 4rem)" }}>Admin access</h1>
+            <p style={{ margin: 0, color: "var(--muted)" }}>
+              Settings are protected on this deployment. Enter the admin password to manage
+              sources, provider keys, and product configuration.
+            </p>
+          </div>
+
+          <form
+            action="/api/admin/login"
+            method="post"
+            className="page-section"
+            style={{ display: "grid", gap: 18, padding: 24, borderRadius: 24 }}
+          >
+            <input type="hidden" name="next" value="/settings" />
+            <Field label="Admin password" name="password" type="password" value="" />
+            {authError ? (
+              <p style={{ margin: 0, color: "#ff8f8f" }}>Incorrect password. Try again.</p>
+            ) : null}
+            <div style={{ display: "flex", gap: 12, flexWrap: "wrap" }}>
+              <button className="primary-button" type="submit" style={{ cursor: "pointer" }}>
+                Unlock settings
+              </button>
+              <Link className="secondary-button" href="/" style={{ textDecoration: "none" }}>
+                Back home
+              </Link>
+            </div>
+          </form>
+        </section>
+      </main>
+    );
+  }
+
   const settings = await getSettingsForDisplay();
   const activePreset = await getActivePreset();
 
@@ -61,17 +104,23 @@ export default async function SettingsPage({
             display: "grid",
             gap: 10,
             padding: 32,
-            borderRadius: 32,
-            background: "var(--surface)"
+            borderRadius: 32
           }}
         >
           <h1 style={{ margin: 0, fontSize: "clamp(2.1rem, 6vw, 4rem)" }}>Settings</h1>
-          <p style={{ margin: 0, color: "var(--muted)", maxWidth: 760 }}>
-            Configure live sources and explanation models from the product UI. OpenAI-compatible
-            endpoints work here too, including local or open-source-hosted providers.
-          </p>
-          {saved ? <strong style={{ color: "var(--accent)" }}>Settings saved.</strong> : null}
-        </div>
+            <p style={{ margin: 0, color: "var(--muted)", maxWidth: 760 }}>
+              Configure live sources and explanation models from the product UI. OpenAI-compatible
+              endpoints work here too, including local or open-source-hosted providers.
+            </p>
+            {saved ? <strong style={{ color: "var(--accent)" }}>Settings saved.</strong> : null}
+            {isProtected ? (
+              <form action="/api/admin/logout" method="post">
+                <button className="secondary-button" type="submit" style={{ cursor: "pointer" }}>
+                  Log out
+                </button>
+              </form>
+            ) : null}
+          </div>
 
         <form
           action="/api/settings/preset"

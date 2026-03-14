@@ -22,7 +22,8 @@ const envSchema = z.object({
   X_SEARCH_QUERY: z.string().default("AI OR LLM OR agent"),
   X_MAX_RESULTS: z.coerce.number().int().min(10).max(100).default(25),
   REFRESH_JOB_TOKEN: z.string().optional(),
-  APP_BASE_URL: z.string().url().default("http://localhost:3000")
+  APP_BASE_URL: z.string().url().default("http://localhost:3000"),
+  ADMIN_PASSWORD: z.string().optional()
 });
 
 export type AppEnv = z.infer<typeof envSchema>;
