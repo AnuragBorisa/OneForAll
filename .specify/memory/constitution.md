@@ -1,50 +1,38 @@
-# [PROJECT_NAME] Constitution
-<!-- Example: Spec Constitution, TaskFlow Constitution, etc. -->
+# AI Feed Constitution
 
 ## Core Principles
 
-### [PRINCIPLE_1_NAME]
-<!-- Example: I. Library-First -->
-[PRINCIPLE_1_DESCRIPTION]
-<!-- Example: Every feature starts as a standalone library; Libraries must be self-contained, independently testable, documented; Clear purpose required - no organizational-only libraries -->
+### I. Practical Signal Over Content Volume
+Every feature must improve the user's ability to understand or apply AI developments. The product exists to reduce noise, not to maximize feed length or source count.
 
-### [PRINCIPLE_2_NAME]
-<!-- Example: II. CLI Interface -->
-[PRINCIPLE_2_DESCRIPTION]
-<!-- Example: Every library exposes functionality via CLI; Text in/out protocol: stdin/args → stdout, errors → stderr; Support JSON + human-readable formats -->
+### II. Source Transparency Is Mandatory
+Every surfaced item must preserve source platform, author, URL, and timing. Generated explanations must clearly separate source-grounded statements from model-generated interpretation.
 
-### [PRINCIPLE_3_NAME]
-<!-- Example: III. Test-First (NON-NEGOTIABLE) -->
-[PRINCIPLE_3_DESCRIPTION]
-<!-- Example: TDD mandatory: Tests written → User approved → Tests fail → Then implement; Red-Green-Refactor cycle strictly enforced -->
+### III. Normalize Before Intelligence
+All ingestion paths must convert source-specific payloads into a canonical content model before classification, ranking, deduplication, or summarization. Downstream logic must not depend on raw platform formats.
 
-### [PRINCIPLE_4_NAME]
-<!-- Example: IV. Integration Testing -->
-[PRINCIPLE_4_DESCRIPTION]
-<!-- Example: Focus areas requiring integration tests: New library contract tests, Contract changes, Inter-service communication, Shared schemas -->
+### IV. Explain for Action
+Each published item must strive to answer: what happened, why it matters, who should care, and how it can be used. Explanations should prefer plain language, one concrete example, and explicit caveats when confidence is limited.
 
-### [PRINCIPLE_5_NAME]
-<!-- Example: V. Observability, VI. Versioning & Breaking Changes, VII. Simplicity -->
-[PRINCIPLE_5_DESCRIPTION]
-<!-- Example: Text I/O ensures debuggability; Structured logging required; Or: MAJOR.MINOR.BUILD format; Or: Start simple, YAGNI principles -->
+### V. Thin Vertical Slices
+Implementation must proceed in small end-to-end slices that run on real content. Reliability of ingestion and normalization takes priority over speculative autonomy or complex recommendation systems.
 
-## [SECTION_2_NAME]
-<!-- Example: Additional Constraints, Security Requirements, Performance Standards, etc. -->
+## Product Constraints
 
-[SECTION_2_CONTENT]
-<!-- Example: Technology stack requirements, compliance standards, deployment policies, etc. -->
+- Primary product surface is a web app.
+- WhatsApp is a secondary delivery channel for digests and alerts.
+- Required initial sources are X, Reddit, YouTube, and RSS/blogs.
+- The system should support reprocessing of stored raw content as prompts, heuristics, and models improve.
 
-## [SECTION_3_NAME]
-<!-- Example: Development Workflow, Review Process, Quality Gates, etc. -->
+## Development Workflow
 
-[SECTION_3_CONTENT]
-<!-- Example: Code review requirements, testing gates, deployment approval process, etc. -->
+- Planning follows the actual `spec-kit` workflow from `.codex/prompts/` and `.specify/`.
+- Execution follows the actual `GSD` workflow installed under `.claude/`.
+- Project-specific operating guidance lives in `AGENTS.md`.
+- Reusable product-specific Codex instructions live in `skills/`.
 
 ## Governance
-<!-- Example: Constitution supersedes all other practices; Amendments require documentation, approval, migration plan -->
 
-[GOVERNANCE_RULES]
-<!-- Example: All PRs/reviews must verify compliance; Complexity must be justified; Use [GUIDANCE_FILE] for runtime development guidance -->
+This constitution governs product and implementation decisions in this repository. Changes must preserve source transparency, canonical normalization, and action-oriented explanations. Simpler designs should be preferred unless added complexity has a clear product payoff.
 
-**Version**: [CONSTITUTION_VERSION] | **Ratified**: [RATIFICATION_DATE] | **Last Amended**: [LAST_AMENDED_DATE]
-<!-- Example: Version: 2.1.1 | Ratified: 2025-06-13 | Last Amended: 2025-07-16 -->
+**Version**: 1.0.0 | **Ratified**: 2026-03-10 | **Last Amended**: 2026-03-10

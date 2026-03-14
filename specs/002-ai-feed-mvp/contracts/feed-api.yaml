@@ -1,0 +1,223 @@
+openapi: 3.1.0
+info:
+  title: AI Feed MVP API
+  version: 0.1.0
+  description: Contract for the initial feed, item detail, saved item, and daily digest endpoints.
+paths:
+  /api/feed:
+    get:
+      summary: List feed items
+      parameters:
+        - in: query
+          name: source
+          schema:
+            type: string
+          description: Filter by source family such as x, reddit, youtube, or rss
+        - in: query
+          name: topic
+          schema:
+            type: string
+          description: Filter by topic tag
+        - in: query
+          name: cursor
+          schema:
+            type: string
+          description: Cursor for pagination
+      responses:
+        "200":
+          description: Feed page returned
+          content:
+            application/json:
+              schema:
+                type: object
+                required: [items, nextCursor]
+                properties:
+                  items:
+                    type: array
+                    items:
+                      $ref: "#/components/schemas/FeedCard"
+                  nextCursor:
+                    type:
+                      - string
+                      - "null"
+  /api/items/{itemId}:
+    get:
+      summary: Get a single feed item with explanation
+      parameters:
+        - in: path
+          name: itemId
+          required: true
+          schema:
+            type: string
+      responses:
+        "200":
+          description: Feed item detail returned
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/FeedItemDetail"
+        "404":
+          description: Item not found
+  /api/items/{itemId}/save:
+    post:
+      summary: Save a feed item for later review
+      parameters:
+        - in: path
+          name: itemId
+          required: true
+          schema:
+            type: string
+      responses:
+        "200":
+          description: Save succeeded
+          content:
+            application/json:
+              schema:
+                type: object
+                required: [saved]
+                properties:
+                  saved:
+                    type: boolean
+  /api/saved:
+    get:
+      summary: List saved feed items
+      responses:
+        "200":
+          description: Saved items returned
+          content:
+            application/json:
+              schema:
+                type: object
+                required: [items]
+                properties:
+                  items:
+                    type: array
+                    items:
+                      $ref: "#/components/schemas/FeedCard"
+  /api/digests/daily:
+    get:
+      summary: Get the latest daily digest
+      responses:
+        "200":
+          description: Daily digest returned
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/DailyDigest"
+components:
+  schemas:
+    FeedCard:
+      type: object
+      required:
+        - id
+        - title
+        - source
+        - sourceUrl
+        - publishedAt
+        - contentType
+      properties:
+        id:
+          type: string
+        title:
+          type: string
+        source:
+          type: string
+        author:
+          type:
+            - string
+            - "null"
+        sourceUrl:
+          type: string
+          format: uri
+        publishedAt:
+          type: string
+          format: date-time
+        contentType:
+          type: string
+        topicTags:
+          type: array
+          items:
+            type: string
+        explanationPreview:
+          type:
+            - string
+            - "null"
+    FeedItemDetail:
+      type: object
+      required:
+        - item
+        - explanation
+      properties:
+        item:
+          $ref: "#/components/schemas/FeedCard"
+        explanation:
+          $ref: "#/components/schemas/ExplanationBlock"
+        cluster:
+          type:
+            - object
+            - "null"
+          properties:
+            title:
+              type: string
+            relatedCount:
+              type: integer
+    ExplanationBlock:
+      type: object
+      required:
+        - simpleExplanation
+        - whyItMatters
+        - tryItNext
+      properties:
+        simpleExplanation:
+          type: string
+        whyItMatters:
+          type: string
+        example:
+          type:
+            - string
+            - "null"
+        useCases:
+          type: array
+          items:
+            type: string
+        whoShouldCare:
+          type: array
+          items:
+            type: string
+        tryItNext:
+          type: string
+        credibilityNotes:
+          type:
+            - string
+            - "null"
+    DailyDigest:
+      type: object
+      required:
+        - date
+        - title
+        - entries
+      properties:
+        date:
+          type: string
+          format: date
+        title:
+          type: string
+        intro:
+          type:
+            - string
+            - "null"
+        entries:
+          type: array
+          items:
+            type: object
+            required:
+              - itemId
+              - title
+              - shortSummary
+            properties:
+              itemId:
+                type: string
+              title:
+                type: string
+              shortSummary:
+                type: string

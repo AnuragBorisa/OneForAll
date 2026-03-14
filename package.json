@@ -1,0 +1,39 @@
+{
+  "name": "ai-feed",
+  "version": "0.1.0",
+  "private": false,
+  "type": "module",
+  "scripts": {
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start",
+    "lint": "eslint .",
+    "typecheck": "tsc --noEmit",
+    "db:migrate": "tsx scripts/ingest/migrate.ts",
+    "ingest:rss": "tsx scripts/ingest/run-rss-refresh.ts",
+    "ingest:rss:watch": "tsx scripts/ingest/run-rss-refresh.ts --watch=300",
+    "ingest:refresh": "tsx scripts/ingest/run-refresh.ts",
+    "ingest:refresh:watch": "tsx scripts/ingest/run-refresh.ts --watch=300",
+    "ingest:fixtures": "tsx scripts/ingest/run-fixtures.ts",
+    "digest:run": "tsx scripts/ingest/run-digest.ts"
+  },
+  "dependencies": {
+    "drizzle-orm": "^0.44.2",
+    "next": "^15.2.1",
+    "pg": "^8.16.0",
+    "react": "^19.0.0",
+    "react-dom": "^19.0.0",
+    "zod": "^3.24.2"
+  },
+  "devDependencies": {
+    "@types/node": "^24.0.0",
+    "@types/pg": "^8.15.1",
+    "@types/react": "^19.0.0",
+    "@types/react-dom": "^19.0.0",
+    "drizzle-kit": "^0.31.1",
+    "eslint": "^9.24.0",
+    "eslint-config-next": "^15.2.1",
+    "tsx": "^4.19.3",
+    "typescript": "^5.8.2"
+  }
+}

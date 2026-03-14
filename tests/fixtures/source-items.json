@@ -1,0 +1,26 @@
+[
+  {
+    "id": "fixture-rss-1",
+    "source": "rss",
+    "title": "Official release note for a new agent workflow",
+    "url": "https://example.com/release/agent-workflow",
+    "contentType": "official_announcement",
+    "rawText": "Release notes describing a new multi-step agent workflow and how teams can evaluate it."
+  },
+  {
+    "id": "fixture-x-1",
+    "source": "x",
+    "title": "Builder thread showing a practical AI support workflow",
+    "url": "https://x.com/example/status/fixture-1",
+    "contentType": "workflow",
+    "rawText": "Thread describing how one builder reduced manual support work with prompt-based triage."
+  },
+  {
+    "id": "fixture-youtube-1",
+    "source": "youtube",
+    "title": "Tutorial comparing AI research stacks",
+    "url": "https://youtube.com/watch?v=fixture-1",
+    "contentType": "tutorial",
+    "rawText": "Walkthrough comparing AI research workflows and tooling choices."
+  }
+]

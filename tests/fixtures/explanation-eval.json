@@ -1,0 +1,20 @@
+[
+  {
+    "itemId": "rss-rss-1",
+    "expectations": {
+      "hasSimpleExplanation": true,
+      "hasWhyItMatters": true,
+      "hasTryItNext": true,
+      "credibilityTone": "announcement"
+    }
+  },
+  {
+    "itemId": "x-x-1",
+    "expectations": {
+      "hasSimpleExplanation": true,
+      "hasUseCases": true,
+      "hasCredibilityNotes": true,
+      "credibilityTone": "community"
+    }
+  }
+]

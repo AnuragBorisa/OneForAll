@@ -2,54 +2,51 @@
 
 ## Purpose
 
-This repository builds a personal AI-native feed that ingests AI updates from X, Reddit, YouTube, and RSS/blogs, then converts each item into practical, easy-to-understand explanations with examples and use cases.
+This repository is for an AI-native feed that ingests AI updates from X, Reddit, YouTube, and RSS/blogs, then explains each item in simple, practical terms with examples and use cases.
 
-## Working Model
+## Required Workflow
 
-- Use `spec-kit` style artifacts as the planning brain.
-- Use `GSD` style execution artifacts as the delivery muscle.
-- Keep source fidelity high: always preserve the original URL, author, source, and publish time.
-- Prefer incremental delivery slices over broad speculative architecture.
+- Use the real `spec-kit` scaffold in `.specify/` and `.codex/prompts/`.
+- Use the real `GSD` install in `.claude/get-shit-done/` and `.claude/commands/gsd/`.
+- Do not create parallel homegrown planning or execution frameworks.
+- Keep project-specific guidance in this file and product-specific reusable instructions in `skills/`.
 
-## Product Principles
+## Product Rules
 
 - Aggregate first, explain second, recommend third.
-- Explanations must be simpler than the source, not longer than the source by default.
-- Every summarized item should answer:
-  - What happened?
-  - Why does it matter?
-  - Who should care?
-  - How can someone use it?
-- Distinguish facts, source claims, and model inferences.
-- Collapse duplicates across platforms into one canonical story when possible.
-- Rank for usefulness, not only virality.
+- Distinguish source facts from model inferences.
+- Preserve source attribution: platform, author, URL, and publish time.
+- Collapse duplicate stories when possible.
+- Rank by usefulness and relevance, not only virality.
 
-## Source Rules
+## Source Priorities
 
-- `X`: prioritize workflows, builder threads, launch reactions, demos.
-- `Reddit`: prioritize discussions, case studies, honest evaluations, niche tips.
-- `YouTube`: prioritize tutorials, walkthroughs, launches, comparisons.
-- `RSS/Blogs`: prioritize official announcements, research, release notes, deep dives.
-- Store enough raw content to regenerate improved summaries later.
+- `X`: workflows, builder threads, launch reactions, tactical tips
+- `Reddit`: discussion, experiments, feedback, niche discoveries
+- `YouTube`: tutorials, walkthroughs, demos, comparisons
+- `RSS/Blogs`: official announcements, research, release notes, deep dives
 
-## Delivery Rules
+## Product Surface
 
-- Web app is the primary product surface.
-- WhatsApp is a secondary distribution channel for alerts and digests.
-- Build the MVP around web feed, saved items, explanations, and daily digest.
-- Defer complex source-specific edge cases unless they block the MVP.
+- Primary product: web app
+- Secondary distribution: WhatsApp digests and alerts
 
 ## Engineering Rules
 
-- Prefer typed interfaces at ingestion and normalization boundaries.
-- Normalize all sources into a shared content schema before ranking or summarization.
-- Keep summarization prompts structured and versioned.
-- Record processing state for every item: `fetched`, `normalized`, `classified`, `summarized`, `published`, `failed`.
-- Design for idempotent ingestion jobs.
+- Normalize all source content into one canonical schema before ranking or summarization.
+- Keep raw payloads so improved extraction and summaries can be regenerated.
+- Make ingestion jobs idempotent.
+- Version structured prompts and generated output schemas.
 
 ## Repo Conventions
 
-- Planning artifacts live in `specs/`.
-- Execution artifacts live in `gsd/`.
-- Reusable Codex skill instructions live in `skills/`.
-- Keep docs concise and actionable.
+- `spec-kit` artifacts live under `.specify/` and the generated `specs/` tree created by the upstream workflow.
+- `GSD` artifacts live under `.claude/`.
+- Project-local Codex skills live under `skills/`.
+
+## Active Technologies
+- TypeScript 5.x on Node.js 22 + Next.js 15, React 19, Drizzle ORM, Zod, OpenAI-compatible SDK, RSS parser and source-specific API clients (002-ai-feed-mvp)
+- PostgreSQL for application data and processing state (002-ai-feed-mvp)
+
+## Recent Changes
+- 002-ai-feed-mvp: Added TypeScript 5.x on Node.js 22 + Next.js 15, React 19, Drizzle ORM, Zod, OpenAI-compatible SDK, RSS parser and source-specific API clients
