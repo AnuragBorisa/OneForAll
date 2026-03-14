@@ -47,10 +47,14 @@ export const CONTENT_PRESETS = {
 
 export type ContentPresetId = keyof typeof CONTENT_PRESETS;
 
+export function isContentPresetId(value: string | null | undefined): value is ContentPresetId {
+  return Boolean(value && value in CONTENT_PRESETS);
+}
+
 export function getContentPreset(presetId: string | null | undefined) {
-  if (!presetId || !(presetId in CONTENT_PRESETS)) {
+  if (!isContentPresetId(presetId)) {
     return CONTENT_PRESETS.ai;
   }
 
-  return CONTENT_PRESETS[presetId as ContentPresetId];
+  return CONTENT_PRESETS[presetId];
 }

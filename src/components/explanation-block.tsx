@@ -53,9 +53,9 @@ export function ExplanationBlock({ explanation }: { explanation: ExplanationBloc
           style={{
             padding: 16,
             borderRadius: 18,
-            background: "rgba(54, 227, 138, 0.1)",
+            background: "rgba(var(--accent-rgb), 0.1)",
             color: "var(--accent-strong)",
-            border: "1px solid rgba(114, 255, 176, 0.16)"
+            border: "1px solid rgba(var(--accent-strong-rgb), 0.16)"
           }}
         >
           {explanation.credibilityNotes}

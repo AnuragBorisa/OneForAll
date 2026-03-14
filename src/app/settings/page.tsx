@@ -1,6 +1,7 @@
 import Link from "next/link";
-import { getSettingsForDisplay, getActivePreset } from "@/server/settings/settings";
+import { getSettingsForDisplay, getRuntimeSettings } from "@/server/settings/settings";
 import { isAdminAuthenticated, isAdminProtectionEnabled } from "@/server/auth/admin";
+import { getContentPreset } from "@/server/settings/presets";
 
 export const dynamic = "force-dynamic";
 
@@ -36,7 +37,7 @@ function Field({
           padding: "12px 14px",
           borderRadius: 14,
           border: "1px solid var(--border)",
-          background: "rgba(10, 22, 16, 0.28)",
+          background: "rgba(var(--surface-rgb), 0.28)",
           font: "inherit"
         }}
       />
@@ -93,7 +94,8 @@ export default async function SettingsPage({
   }
 
   const settings = await getSettingsForDisplay();
-  const activePreset = await getActivePreset();
+  const runtimeSettings = await getRuntimeSettings();
+  const activePreset = getContentPreset(runtimeSettings.contentPreset);
 
   return (
     <main style={{ minHeight: "100vh", padding: "48px 24px 80px" }}>
@@ -295,12 +297,12 @@ export default async function SettingsPage({
               padding: "12px 18px",
               borderRadius: 999,
               border: "1px solid var(--border)",
-              background: "linear-gradient(135deg, #1fa85f 0%, #42f79a 100%)",
-              color: "#031109",
+              background: "var(--accent-gradient)",
+              color: "var(--accent-contrast)",
               font: "inherit",
               fontWeight: 700,
               cursor: "pointer",
-              boxShadow: "0 14px 30px rgba(54, 227, 138, 0.18)"
+              boxShadow: "0 14px 30px rgba(var(--accent-rgb), 0.18)"
             }}
           >
             Save settings

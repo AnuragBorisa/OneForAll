@@ -33,7 +33,7 @@ export default async function DigestPage() {
                 padding: 20,
                 borderRadius: 24,
                 background: "transparent",
-                border: "1px solid rgba(114, 255, 176, 0.12)",
+                border: "1px solid rgba(var(--accent-strong-rgb), 0.12)",
                 display: "grid",
                 gap: 8
               }}
@@ -59,8 +59,8 @@ export default async function DigestPage() {
             gap: 10,
             padding: 24,
             borderRadius: 24,
-            border: "1px solid rgba(114, 255, 176, 0.12)",
-            background: "rgba(54, 227, 138, 0.05)"
+            border: "1px solid rgba(var(--accent-strong-rgb), 0.12)",
+            background: "rgba(var(--accent-rgb), 0.05)"
           }}
         >
           <h2 style={{ margin: 0 }}>WhatsApp-ready preview</h2>

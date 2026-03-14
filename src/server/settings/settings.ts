@@ -3,6 +3,7 @@ import { getEnv } from "@/lib/env";
 import { getDb } from "@/server/db/client";
 import { appSettings } from "@/server/db/schema/feed";
 import { getContentPreset, type ContentPresetId } from "@/server/settings/presets";
+import { getViewPresetId } from "@/server/settings/view-preset";
 
 export const SETTINGS_KEYS = [
   "contentPreset",
@@ -167,6 +168,12 @@ export async function getSettingsForDisplay() {
 }
 
 export async function getActivePreset() {
+  const viewPresetId = await getViewPresetId();
+
+  if (viewPresetId) {
+    return getContentPreset(viewPresetId);
+  }
+
   const settings = await getRuntimeSettings();
   return getContentPreset(settings.contentPreset);
 }

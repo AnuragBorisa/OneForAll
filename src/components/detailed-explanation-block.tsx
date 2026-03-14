@@ -63,9 +63,9 @@ export function DetailedExplanationBlock({ explanation }: { explanation: Detaile
           style={{
             padding: 16,
             borderRadius: 18,
-            background: "rgba(54, 227, 138, 0.08)",
+            background: "rgba(var(--accent-rgb), 0.08)",
             color: "var(--accent-strong)",
-            border: "1px solid rgba(114, 255, 176, 0.16)"
+            border: "1px solid rgba(var(--accent-strong-rgb), 0.16)"
           }}
         >
           {explanation.sourceLimits}

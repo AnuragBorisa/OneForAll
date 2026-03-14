@@ -1,6 +1,9 @@
 import type { Metadata } from "next";
+import { PresetSwitcher } from "@/components/preset-switcher";
 import { getActivePreset } from "@/server/settings/settings";
 import "./globals.css";
+
+export const dynamic = "force-dynamic";
 
 export async function generateMetadata(): Promise<Metadata> {
   const preset = await getActivePreset();
@@ -27,7 +30,7 @@ export default async function RootLayout({
 
   return (
     <html lang="en">
-      <body className="app-shell">
+      <body className={`app-shell theme-${preset.id}`}>
         <div className="app-noise" />
         <header
           className="app-header"
@@ -58,11 +61,14 @@ export default async function RootLayout({
             >
               {preset.appTitle}
             </a>
-            <div className="app-nav-links" style={{ display: "flex", gap: 14, flexWrap: "wrap", color: "var(--muted)" }}>
-              <a href="/feed">Feed</a>
-              <a href="/saved">Saved</a>
-              <a href="/feed/digest">Digest</a>
-              <a href="/settings">Settings</a>
+            <div style={{ display: "flex", gap: 14, flexWrap: "wrap", alignItems: "center" }}>
+              <PresetSwitcher activePreset={preset.id} compact />
+              <div className="app-nav-links" style={{ display: "flex", gap: 14, flexWrap: "wrap", color: "var(--muted)" }}>
+                <a href="/feed">Feed</a>
+                <a href="/saved">Saved</a>
+                <a href="/feed/digest">Digest</a>
+                <a href="/settings">Settings</a>
+              </div>
             </div>
           </nav>
         </header>

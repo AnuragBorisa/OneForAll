@@ -47,13 +47,13 @@ export function RefreshButton() {
           border: "1px solid var(--border)",
           background:
             status === "running"
-              ? "rgba(54, 227, 138, 0.12)"
-              : "linear-gradient(135deg, #1fa85f 0%, #42f79a 100%)",
-          color: status === "running" ? "var(--accent-strong)" : "#031109",
+              ? "var(--accent-soft)"
+              : "var(--accent-gradient)",
+          color: status === "running" ? "var(--accent-strong)" : "var(--accent-contrast)",
           font: "inherit",
           fontWeight: 700,
           cursor: status === "running" ? "progress" : "pointer",
-          boxShadow: "0 14px 30px rgba(54, 227, 138, 0.18)"
+          boxShadow: "0 14px 30px rgba(var(--accent-rgb), 0.18)"
         }}
       >
         {status === "running" ? "Refreshing..." : "Refresh feed"}

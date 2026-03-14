@@ -1,4 +1,7 @@
+import { PresetSwitcher } from "@/components/preset-switcher";
 import { getActivePreset } from "@/server/settings/settings";
+
+export const dynamic = "force-dynamic";
 
 const sources = ["X", "Reddit", "YouTube", "RSS/Blogs"];
 
@@ -48,8 +51,9 @@ export default async function HomePage() {
           <div className="hero-grid" style={{ display: "grid", gap: 28 }}>
             <div style={{ display: "grid", gap: 16 }}>
               <span className="feed-chip" style={{ width: "fit-content" }}>
-                Live signal engine
+                {preset.id === "quantum" ? "Quantum signal engine" : "Live signal engine"}
               </span>
+              <PresetSwitcher activePreset={preset.id} />
               <div style={{ display: "grid", gap: 14 }}>
                 <h1 style={{ margin: 0, fontSize: "clamp(3rem, 8vw, 6.4rem)", lineHeight: 0.9, maxWidth: 820 }}>
                   {preset.homeTitle}
@@ -62,8 +66,8 @@ export default async function HomePage() {
                 <a href="/feed" className="primary-button" style={{ fontWeight: 700, textDecoration: "none" }}>
                   Open the feed
                 </a>
-                <a href="/settings" className="secondary-button" style={{ fontWeight: 700, textDecoration: "none" }}>
-                  Tune sources
+                <a href="/feed/digest" className="secondary-button" style={{ fontWeight: 700, textDecoration: "none" }}>
+                  Open digest
                 </a>
               </div>
             </div>
@@ -81,8 +85,9 @@ export default async function HomePage() {
                   Product posture
                 </span>
                 <p style={{ margin: 0, color: "var(--muted)", lineHeight: 1.8 }}>
-                  Built to feel less like doomscrolling and more like a high-signal terminal for
-                  tracking what actually changed, why it matters, and what deserves action.
+                  {preset.id === "quantum"
+                    ? "Built to make quantum research, hardware, software tooling, and company moves readable without collapsing into raw paper links and jargon."
+                    : "Built to feel less like doomscrolling and more like a high-signal terminal for tracking what actually changed, why it matters, and what deserves action."}
                 </p>
               </div>
               <div className="hero-metrics">
@@ -121,7 +126,7 @@ export default async function HomePage() {
                 padding: 22,
                 borderRadius: 24,
                 background: "transparent",
-                border: "1px solid rgba(114, 255, 176, 0.1)",
+                border: "1px solid rgba(var(--accent-strong-rgb), 0.1)",
                 boxShadow: "none"
               }}
             >
@@ -144,7 +149,7 @@ export default async function HomePage() {
             gap: 12,
             padding: 24,
             borderRadius: 24,
-            border: "1px solid rgba(114, 255, 176, 0.12)",
+            border: "1px solid rgba(var(--accent-strong-rgb), 0.12)",
             background: "transparent",
             boxShadow: "none"
           }}

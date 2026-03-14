@@ -35,7 +35,7 @@ export function FeedCard({ item }: { item: FeedListItem }) {
           position: "absolute",
           inset: "0 0 auto 0",
           height: 1,
-          background: "linear-gradient(90deg, transparent, rgba(114, 255, 176, 0.6), transparent)"
+          background: "linear-gradient(90deg, transparent, rgba(var(--accent-strong-rgb), 0.6), transparent)"
         }}
       />
       <div
@@ -55,7 +55,7 @@ export function FeedCard({ item }: { item: FeedListItem }) {
               alignItems: "center",
               padding: "6px 10px",
               borderRadius: 999,
-              border: "1px solid rgba(114, 255, 176, 0.12)",
+              border: "1px solid rgba(var(--accent-strong-rgb), 0.12)",
               background: "transparent",
               color: "var(--muted)",
               fontSize: 12,

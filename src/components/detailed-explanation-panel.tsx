@@ -77,12 +77,12 @@ export function DetailedExplanationPanel({
           style={{
             width: "fit-content",
             padding: "12px 18px",
-            background: explanation ? "var(--surface-plain)" : "linear-gradient(135deg, #1fa85f 0%, #42f79a 100%)",
-            color: explanation ? "var(--ink)" : "#031109",
+            background: explanation ? "var(--surface-plain)" : "var(--accent-gradient)",
+            color: explanation ? "var(--ink)" : "var(--accent-contrast)",
             font: "inherit",
             fontWeight: 600,
             cursor: isLoading ? "progress" : "pointer",
-            boxShadow: explanation ? "var(--glow)" : "0 14px 30px rgba(54, 227, 138, 0.18)"
+            boxShadow: explanation ? "var(--glow)" : "0 14px 30px rgba(var(--accent-rgb), 0.18)"
           }}
         >
           {isLoading ? "Generating..." : explanation ? "Regenerate detailed explanation" : "Detailed explanation"}

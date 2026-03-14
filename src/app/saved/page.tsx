@@ -42,7 +42,7 @@ export default async function SavedPage() {
               style={{
                 padding: 24,
                 borderRadius: 24,
-                border: "1px solid rgba(114, 255, 176, 0.12)"
+                border: "1px solid rgba(var(--accent-strong-rgb), 0.12)"
               }}
             >
               No saved items yet.

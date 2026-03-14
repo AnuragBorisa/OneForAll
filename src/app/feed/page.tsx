@@ -1,3 +1,4 @@
+import { PresetSwitcher } from "@/components/preset-switcher";
 import { FeedCard } from "@/components/feed-card";
 import { RefreshButton } from "@/components/refresh-button";
 import { getFeed } from "@/server/ranking/get-feed";
@@ -24,8 +25,7 @@ export default async function FeedPage({
     <main
       style={{
         minHeight: "100vh",
-        padding: "48px 24px 80px",
-        background: "#020403"
+        padding: "48px 24px 80px"
       }}
     >
       <section
@@ -57,8 +57,9 @@ export default async function FeedPage({
               textTransform: "uppercase"
             }}
           >
-            Unified Feed
+            {preset.label} Feed
           </span>
+          <PresetSwitcher activePreset={preset.id} />
           <h1 style={{ margin: 0, fontSize: "clamp(2.2rem, 6vw, 4.4rem)", lineHeight: 0.95 }}>
             {preset.feedTitle}
           </h1>

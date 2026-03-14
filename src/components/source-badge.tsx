@@ -29,7 +29,7 @@ export function SourceBadge({ source }: { source: string }) {
           height: 7,
           borderRadius: "50%",
           background: "currentColor",
-          boxShadow: "0 0 16px rgba(114, 255, 176, 0.8)"
+          boxShadow: "0 0 16px rgba(var(--accent-strong-rgb), 0.8)"
         }}
       />
       {LABELS[source] ?? source}
